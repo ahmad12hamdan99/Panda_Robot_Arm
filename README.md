@@ -1,5 +1,6 @@
 # Introduction
 This repo containes educational examples on Franka Emika 7 DOF robot using python and robtotics toolbox and numpy. 
+We hope that it will be helpful for students and engineers to get a better understanding for topic like calibration and control.
 
 
 <p align="center">
@@ -14,3 +15,4 @@ From a manifacturing stand point it extremely challenging to produce robots with
 <p align="center">
   <img src="HW1/img/calibration_schema.png" alt="schema"/>
 </p>
+
