@@ -64,7 +64,7 @@ based on dedicated analytical elimination rules and includes the following steps
  1. Construction of the complete and obviously reducible model in the form of
 homogeneous matrices product.
 * The base transformation  $T_{Base}=[T_x T_y T_z R_x R_y R_z]_b$
-* The joint and link transformation $T_{joint,j} $.$ T_{Link,j}$
+* The joint and link transformation $T_{joint,j} . T_{Link,j}$
   * for revolute joint $T_{joint,j} $.$ T_{Link,j}= R_{e,j}(q_j,\pi_{qj}).[T_u T_v R_u R_v]_{Lj} $
   * for prismatic joint $T_{joint,j} $.$ T_{Link,j}= T_{e,j}(q_j,\pi_{qj}).[R_u R_v ]_{Lj}$
 * The tool transformation $ T_{tool}=[T_x T_y T_z R_x R_y R_z]_t$
