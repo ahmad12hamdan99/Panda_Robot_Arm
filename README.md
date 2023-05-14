@@ -61,12 +61,12 @@ There are a number of techniques that allows us to obtain the manipulator model 
 In this work, we will use the model generation technique that is
 based on dedicated analytical elimination rules and includes the following steps:
 
- 1. Construction of the complete and obviously reducible model in the form of
+1. Construction of the complete and obviously reducible model in the form of
 homogeneous matrices product.
 * The base transformation  $T_{Base}=[T_x T_y T_z R_x R_y R_z]_b$
 * The joint and link transformation $T_{joint,j} . T_{Link,j}$
-  * for revolute joint $T_{joint,j} $.$ T_{Link,j}= R_{e,j}(q_j,\pi_{qj}).[T_u T_v R_u R_v]_{Lj} $
-  * for prismatic joint $T_{joint,j} $.$ T_{Link,j}= T_{e,j}(q_j,\pi_{qj}).[R_u R_v ]_{Lj}$
+  * for revolute joint $T_{joint,j} . T_{Link,j}= R_{e,j}(q_j,\pi_{qj}).[T_u T_v R_u R_v]_{Lj} $
+  * for prismatic joint $T_{joint,j} . T_{Link,j}= T_{e,j}(q_j,\pi_{qj}).[R_u R_v ]_{Lj}$
 * The tool transformation $ T_{tool}=[T_x T_y T_z R_x R_y R_z]_t$
 
 2. Elimination of non-identifiable and semi-identifiable parameters in accordance with specific rules for different nature and structure of consecutive joints.
@@ -80,19 +80,36 @@ homogeneous matrices product.
   * if $ e_j \parallel  e_{j-1} $ , eliminate the term $ T_{u,L_{j-k}} $ or $  T_{v,L_{j-k}} $ that defines the translation in the direction of axis $e_j$ , for which $ k $ is minimum $( k \geq 1 ).$
 
   Appling the previous Steps to our robot we got the following :
-  1. $T=[T_xT_yT_zR_xR_yR_z]_b.R_z(q_1+{\Delta q_1}).[T_xT_yR_x{R_y}]_{L_1}.R_y   (q_2+\Delta q_2).[T_x{T_z}R_xR_z]_{L_2}.
-  R_y(q_3+\Delta q_3).[T_xT_zR_x{R_z}]_{L_3}.R_z(q_4+\Delta q_4).[T_xT_yR_x{R_y}]_{L_4}.R_y(q_5+{\Delta q_5}).[T_x{T_z}R_x{R_z}]_{L_5}.
-  R_z(q_6+{\Delta q_6}).[{T_x}{T_y}{R_x}{R_y}]_{L_6}.[T_xT_yT_z{R_x}{R_y}{R_z}]_t$
+  1. $T=[T_xT_yT_zR_xR_yR_z]_b.
+R_z(q_1+\Delta q_1).[T_xT_yR_xR_y].
+R_y(q_2+\Delta q_2).[T_xT_zR_xR_z].
+R_z(q_3+\Delta q_3).[T_xT_yR_xR_y].
+R_y(q_4+\Delta q_4).[T_xT_zR_xR_z].
+R_z(q_5+\Delta q_5).[T_xT_yR_xR_y].
+R_y(q_6+\Delta q_6).[T_xT_zR_xR_z].
+R_z(q_7+\Delta q_7).[T_xT_yR_xR_y].
+[T_xT_yT_zR_xR_yR_z]_t$
 
   * Applying the elimination rules : 
   <br>
-    $T=[T_xT_yT_zR_xR_yR_z]_b.R_z(q_1+\cancel{\Delta q_1}).[T_xT_yR_x\cancel{R_y}]_{L_1}.R_y(q_2+\Delta q_2).[T_x\cancel{T_z}R_xR_z]_{L_2}.
-    R_y(q_3+\Delta q_3).[T_xT_zR_x\cancel{R_z}]_{L_3}.R_z(q_4+\Delta q_4).[T_xT_yR_x\cancel{R_y}]_{L_4}.R_y(q_5+\cancel{\Delta q_5}).[T_x\cancel{T_z}R_x\cancel{R_z}]_{L_5}.
-    R_z(q_6+\cancel{\Delta q_6}).[\cancel{T_x}\cancel{T_y}\cancel{R_x}\cancel{R_y}]_{L_6}.[T_xT_yT_z\cancel{R_x}\cancel{R_y}\cancel{R_z}]_t$
+$T=[T_xT_yT_zR_xR_yR_z]_b.
+R_z(q_1+\cancel{\Delta q_1}).[T_xT_yR_x\cancel{R_y}].
+R_y(q_2+\Delta q_2).[T_xT_zR_x\cancel{R_z}].
+R_z(q_3+\Delta q_3).[T_xT_yR_x\cancel{R_y}].
+R_y(q_4+\Delta q_4).[T_xT_zR_x\cancel{R_z}].
+R_z(q_5+\Delta q_5).[T_xT_yR_x\cancel{R_y}].
+R_y(q_6+\Delta q_6).[T_x\cancel{T_z}R_x\cancel{R_z}].
+R_z(q_7+\cancel{\Delta q_7}).[\cancel{T_x}\cancel{T_y}\cancel{R_x}\cancel{R_y}].
+[\cancel{T_x}\cancel{T_y}\cancel{T_z}\cancel{R_x}\cancel{R_y}\cancel{R_z}]_t$
   * the final equation :
   <br>
-    $T_{robot}=R_z(q_1).[T_xT_yR_x]_{L_1}.R_y(q_2+\Delta q_2).[T_xR_xR_z]_{L_2}.R_y(q_3+\Delta q_3).[T_xT_zR_x]_{L_3}.
-    R_z(q_4+\Delta q_4).[T_xT_yR_x]_{L_4}.R_y(q_5).[T_xR_x]_{L_5}.R_z(q_6)$
+$T_{robot}=R_z(q_1).[T_xT_yR_x].
+R_y(q_2+\Delta q_2).[T_xT_zR_x].
+R_z(q_3+\Delta q_3).[T_xT_yR_x].
+R_y(q_4+\Delta q_4).[T_xT_zR_x].
+R_z(q_5+\Delta q_5).[T_xT_yR_x].
+R_y(q_6+\Delta q_6).[T_xR_x].
+R_z(q_7)$
 
 
 
