@@ -126,10 +126,10 @@ $$\mathbf{\pi}=\{ p_{x1} \quad p_{y1} \quad \varphi_{x1}
 Where $\Delta q_i$ is the joint offset $p_{xj},p_{yj},p_{zj}$ and $\varphi_{xj},\varphi_{yj},\varphi_{zj}$ are the relevant translational and rotational parameters, and $j$ indicates the joint/link number. For these parameters the corresponding nominal values are
 
 
-$$\mathbf{\pi}_0=\{ 0 \quad 0 \quad 0 \quad 0 \quad 0 \quad d_1 \quad 0 \quad 0 
+$$\mathbf{\pi}_0=[ 0 \quad 0 \quad 0 \quad 0 \quad 0 \quad d_1 \quad 0 \quad 0 
 \quad d_2\quad 0 \quad 0 \quad 0 \quad d_3 \quad d_4 \quad 0 \quad 0 
 \quad 0 \quad 0 \quad 0 \quad 0 \quad d_5 \quad 0 
-\}$$
+]$$
 
 
 
