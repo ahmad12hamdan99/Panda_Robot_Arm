@@ -88,7 +88,7 @@ Fig.2.1 - Manipulator segment with perpendicular and parallel axes
 
 
 Applying the previous steps to the 7-DoF Panda robot we got the following:
-1. Complete reducable model: $T=[T_xT_yT_zR_xR_yR_z]_b.$
+1. Complete (but redundant) reducable model: $T=[T_xT_yT_zR_xR_yR_z]_b.$
 $R_z(q_1+\Delta q_1).[T_xT_yR_xR_y].$
 $R_y(q_2+\Delta q_2).[T_xT_zR_xR_z].$
 $R_z(q_3+\Delta q_3).[T_xT_yR_xR_y].$
@@ -98,7 +98,8 @@ $R_y(q_6+\Delta q_6).[T_xT_zR_xR_z].$
 $R_z(q_7+\Delta q_7).[T_xT_yR_xR_y].$
 $[T_xT_yT_zR_xR_yR_z]_t$
 
-2. Applying the above mentioned elimination rules : $T=[T_xT_yT_zR_xR_yR_z]_b.$
+2. Applying the elimination rules for the case of consecutive revolute joints, the following parameters are sequentially eliminated from the redundant model : 
+$T=[T_xT_yT_zR_xR_yR_z]_b.$
 $R_z(q_1+\cancel{\Delta q_1}).[T_xT_yR_x\cancel{R_y}].$
 $R_y(q_2+\Delta q_2).[T_xT_zR_x\cancel{R_z}].$
 $R_z(q_3+\Delta q_3).[T_xT_yR_x\cancel{R_y}].$
@@ -108,9 +109,26 @@ $R_y(q_6+\Delta q_6).[T_x\cancel{T_z}R_x\cancel{R_z}].$
 $R_z(q_7+\cancel{\Delta q_7}).[\cancel{T_x}\cancel{T_y}\cancel{R_x}\cancel{R_y}].$
 $[\cancel{T_x}\cancel{T_y}\cancel{T_z}\cancel{R_x}\cancel{R_y}\cancel{R_z}]_t$
 
-3. Final Irreducable model:
+3. Final complete and irreducable geometric model:
 $T_{robot}=R_z(q_1).[T_xT_yR_x].R_y(q_2+ \Delta q_2).[T_xT_zR_x].R_z(q_3+\Delta q_3).[T_xT_yR_x].$
 $R_y(q_4+\Delta q_4).[T_xT_zR_x].R_z(q_5+\Delta q_5).[T_xT_yR_x].R_y(q_6+\Delta q_6).[T_xR_x].R_z(q_7)$
+
+This model will be further used for geometric calibration of the Panda robot. let us collect parameters in a single vecotr. 
+
+$\mathbf{\pi}=\{ p_{x1} \quad p_{y1} \quad \varphi_{x1} 
+\quad \Delta q_2 \quad p_{x2} \quad p_{z2} \quad \varphi_{x2}
+\quad \Delta q_3 \quad p_{x3} \quad p_{y3} \quad \varphi_{y3} 
+\quad \Delta q_4 \quad p_{x4} \quad p_{z4} \quad \varphi_{x4} 
+\quad \Delta q_5 \quad p_{x5} \quad p_{y5} \quad \varphi_{x5} 
+\quad \Delta q_6 \quad p_{x6}  \quad \varphi_{x6} \}$
+
+
+Where $\Delta q_i$ is the joint offset $p_{xj},p_{yj},p_{zj}$ and $\varphi_{xj},\varphi_{yj},\varphi_{zj}$ are the relevant translational and rotational parameters, and $j$ indicates the joint/link number.
+
+
+
+
+
 
 
 
