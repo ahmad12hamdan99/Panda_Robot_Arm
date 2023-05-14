@@ -25,7 +25,7 @@ class RRT():
         # OBSTACLES
         self.nb_obstacles = obstacles
         #self.obstacles = self.generateObstacles()
-        self.obstacles = [[np.array([0.4, 0.0, 0.5]), 0.1], [np.array([-0.4, 0.0, 0.5]), 0.2], [np.array([0.0, 0.2, -0.3]), 0.2]]
+        self.obstacles = [[np.array([0.4, 0.0, 0.5]), 0.1], [np.array([-0.4, 0.0, 0.5]), 0.2], [np.array([0.0, 0.2, -0.3]), 0.2], [np.array([-0.1, 0.0, -0.0]), 0.2]]
 
         # VERTICES & EDGES
         self.path = []
@@ -361,12 +361,12 @@ class RRT():
                 ax1.plot([_from[0], _to[0]],[_from[1], _to[1]], c='black', linestyle='-')
             ax1.scatter([item[0] for item in self.visited_nodes], [item[1] for item in self.visited_nodes], label='visited nodes', c='black', marker='.')           
             ax1.plot([item[0] for item in self.path], [item[1] for item in self.path], label='path', c='blue')
-            ax1.plot([item[0] for item in self.optimized_path], [item[1] for item in self.optimized_path], label='optimized path', c='red', linestyle='--')
+            #ax1.plot([item[0] for item in self.optimized_path], [item[1] for item in self.optimized_path], label='optimized path', c='red', linestyle='--')
             ax1.scatter(self.start[0], self.start[1], label='start', c='red')
             ax1.scatter(self.goal[0], self.goal[1], label='goal', c='green')
 
             ax2.plot([item[0] for item in self.path], [item[1] for item in self.path], label='path', c='blue')
-            ax2.plot([p[0] for p in self.smoothed_path], [p[1] for p in self.smoothed_path], label=f"Bezier curve", c='green')
+            #ax2.plot([p[0] for p in self.smoothed_path], [p[1] for p in self.smoothed_path], label=f"Bezier curve", c='green')
             ax2.scatter(self.start[0], self.start[1], label='start', c='red')
             ax2.scatter(self.goal[0], self.goal[1], label='goal', c='green')
 
@@ -399,8 +399,8 @@ class RRT():
             
             ax.scatter3D([item[0] for item in self.visited_nodes], [item[1] for item in self.visited_nodes], [item[2] for item in self.visited_nodes], label='visited nodes', c='black', marker='.')
             #ax.plot3D([item.node[0] for item in self.path], [item.node[1] for item in self.path], [item.node[2] for item in self.path], label='path', c='blue')
-            ax.plot3D([item[0] for item in self.optimized_path], [item[1] for item in self.optimized_path], [item[2] for item in self.optimized_path], label='optimized path', c='red', linestyle='--')
-            ax.plot3D([item[0] for item in self.smoothed_path], [item[1] for item in self.smoothed_path], [item[2] for item in self.smoothed_path], label='path', c='green')
+            #ax.plot3D([item[0] for item in self.optimized_path], [item[1] for item in self.optimized_path], [item[2] for item in self.optimized_path], label='optimized path', c='red', linestyle='--')
+            #ax.plot3D([item[0] for item in self.smoothed_path], [item[1] for item in self.smoothed_path], [item[2] for item in self.smoothed_path], label='path', c='green')
 
             ax.scatter3D(self.start[0], self.start[1], self.start[2], label='start', c='red')
             ax.scatter3D(self.goal[0], self.goal[1], self.goal[2], label='goal', c='green')
@@ -433,7 +433,7 @@ if __name__=='__main__':
     # 2. Instantiate the RRT object with N, you may indicate the start and the goal configurations.
     r = RRT(N, start=np.array([-0.4,0.6 ,-0.7]), goal=np.array([0.4,-0.6 ,0.9]))
     # 3. Run the RRT planner (the default one uses bidirectional search)
-    r.runRRT(mode='dual')
+    r.runRRT(mode='single')
     # 4. Plot the results
     r.plot()
     path = r.get_path()

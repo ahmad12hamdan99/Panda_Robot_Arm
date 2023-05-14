@@ -217,6 +217,22 @@ Algorithm BuildRRT
     return G
   ```
 
+<p align="center">
+<img src="HW1/img/path3.png" alt="path2"/>
+</p>
+<p align = "center">
+Fig.5.1 - Example for path planning with multiple obstacles 
+</p>
+
+<p align="center">
+<img src="HW1/img/path2.png" alt="path2"/>
+</p>
+<p align = "center">
+Fig.5.2 - Example for path planning with multiple obstacles 
+</p>
+
+
+
 
 
 
