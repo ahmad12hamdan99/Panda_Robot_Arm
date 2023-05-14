@@ -67,17 +67,17 @@ homogeneous matrices product.
 * The joint and link transformation $T_{joint,j} . T_{Link,j}$
   * for revolute joint $T_{joint,j} . T_{Link,j}= R_{e,j}(q_j,\pi_{qj}).[T_u T_v R_u R_v]_{Lj} $
   * for prismatic joint $T_{joint,j} . T_{Link,j}= T_{e,j}(q_j,\pi_{qj}).[R_u R_v ]_{Lj}$
-* The tool transformation $ T_{tool}=[T_x T_y T_z R_x R_y R_z]_t$
+* The tool transformation $T_{tool}=[T_x T_y T_z R_x R_y R_z]_t$
 
 2. Elimination of non-identifiable and semi-identifiable parameters in accordance with specific rules for different nature and structure of consecutive joints.
 * For the case of consecutive revolute joint $R_{e,j}(q_j,\pi_{qj})$
-  * if $ e_j \perp e_{j-1}$ , eliminate the term $R_{u,L_{j-1}} $ or $  R_{v,L_{j-1}} $ that corresponds to $ R_{e,j} $
-  * if $ e_j \parallel  e_{j-1} $ , eliminate the term $ T_{u,L_{j-k}} $ or $  T_{v,L_{j-k}} $ that defines the translation orthogonal to the joint axes, for which $k$ is minimum $( k \geq 1 ).$
+  * if $e_j \perp e_{j-1}$ , eliminate the term $R_{u,L_{j-1}}$ or $R_{v,L_{j-1}} $ that corresponds to $R_{e,j}$
+  * if $e_j \parallel  e_{j-1}$ , eliminate the term $T_{u,L_{j-k}}$ or $T_{v,L_{j-k}}$ that defines the translation orthogonal to the joint axes, for which $k$ is minimum $( k \geq 1 )$
 
 
 * For the case of consecutive prismatic joint $T_{e,j}(q_j,\pi_{qj})$
-  * if $ e_j \perp e_{j-1}$ , eliminate the term $T_{u,L_{j-1}} $ or $  T_{v,L_{j-1}} $  that corresponds to $ T_{e,j} $
-  * if $ e_j \parallel  e_{j-1} $ , eliminate the term $ T_{u,L_{j-k}} $ or $  T_{v,L_{j-k}} $ that defines the translation in the direction of axis $e_j$ , for which $ k $ is minimum $( k \geq 1 ).$
+  * if $e_j \perp e_{j-1}$ , eliminate the term $T_{u,L_{j-1}}$ or $T_{v,L_{j-1}}$  that corresponds to $T_{e,j}$
+  * if $e_j \parallel  e_{j-1}$ , eliminate the term $T_{u,L_{j-k}}$ or $T_{v,L_{j-k}}$ that defines the translation in the direction of axis $e_j$ , for which $k$ is minimum $( k \geq 1 )$
 
   Appling the previous Steps to our robot we got the following :
   1. $T=[T_xT_yT_zR_xR_yR_z]_b.
