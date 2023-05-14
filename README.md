@@ -115,21 +115,13 @@ $R_y(q_4+\Delta q_4).[T_xT_zR_x].R_z(q_5+\Delta q_5).[T_xT_yR_x].R_y(q_6+\Delta 
 
 This model will be further used for geometric calibration of the Panda robot. let us collect parameters in a single vecotr. 
 
-$\pi=[p_{x1} \quad p_{y1} \quad \varphi_{x1} 
-\quad \Delta q_2 \quad p_{x2} \quad p_{z2} \quad \varphi_{x2}
-\quad \Delta q_3 \quad p_{x3} \quad p_{y3} \quad \varphi_{y3} 
-\quad \Delta q_4 \quad p_{x4} \quad p_{z4} \quad \varphi_{x4} 
-\quad \Delta q_5 \quad p_{x5} \quad p_{y5} \quad \varphi_{x5} 
-\quad \Delta q_6 \quad p_{x6}  \quad \varphi_{x6} ]$$
+$$\pi=[p_{x1} \quad p_{y1} \quad \varphi_{x1} \quad \Delta q_2 \quad p_{x2} \quad p_{z2} \quad \varphi_{x2}\quad \Delta q_3 \quad p_{x3} \quad p_{y3} \quad \varphi_{y3} \quad \Delta q_4 \quad p_{x4} quad p_{z4} \quad \varphi_{x4} \quad \Delta q_5 \quad p_{x5} \quad p_{y5} \quad \varphi_{x5} \quad \Delta q_6 \quad p_{x6}  \quad \varphi_{x6} ]$$
 
 
 Where $\Delta q_i$ is the joint offset $p_{xj},p_{yj},p_{zj}$ and $\varphi_{xj},\varphi_{yj},\varphi_{zj}$ are the relevant translational and rotational parameters, and $j$ indicates the joint/link number. For these parameters the corresponding nominal values are
 
 
-$\pi_0=[ 0 \quad 0 \quad 0 \quad 0 \quad 0 \quad d_1 \quad 0 \quad 0 
-\quad d_2\quad 0 \quad 0 \quad 0 \quad d_3 \quad d_4 \quad 0 \quad 0 
-\quad 0 \quad 0 \quad 0 \quad 0 \quad d_5 \quad 0 
-]$
+$\pi_0=[ 0 \quad 0 \quad 0 \quad 0 \quad 0 \quad d_1 \quad 0 \quad 0 \quad d_2\quad 0 \quad 0 \quad 0 \quad d_3 \quad d_4 \quad 0 \quad 0 \quad 0 \quad 0 \quad 0 \quad 0 \quad d_5 \quad 0 ]$
 
 | Parameters            |    $d_0$   |$d_1$      |$d_2$       |$d_3$      |$d_4$      |$d_5$
 |----------             |---------|---     |---      |--      |--      |---
@@ -194,15 +186,11 @@ for our robot we considered only the following parameters to have deflections:
   * The links lengths 
   * The joints positions
 
-$\mathbf{\pi}=\{  \Delta q_2  \quad p_{z2} \quad \Delta q_3  
-\quad p_{x3} \quad \Delta q_4 \quad p_{x4} \quad p_{z4} 
-\quad \Delta q_5 \quad \Delta q_6 \quad p_{x6}\}$
+$\pi=(  \Delta q_2  \quad p_{z2} \quad \Delta q_3 \quad p_{x3} \quad \Delta q_4 \quad p_{x4} \quad p_{z4} \quad \Delta q_5 \quad \Delta q_6 \quad p_{x6})$
 
 The initial value:
 
-$\mathbf{\pi_{0}}=\{  0  \quad  0.316  \quad 0  
-\quad 0.0825 \quad 0 \quad -0.0825 \quad 0.384
-\quad 0 \quad 0 \quad 0.088 \}$
+$\pi_0=( 0  \quad  0.316  \quad 0  \quad 0.0825 \quad 0 \quad -0.0825 \quad 0.384 \quad 0 \quad 0 \quad 0.088 )$
 
 so we have 10 parameters to calibrate,by using the linearized model $P_i =P_{0i} + J_i. \Delta \pi$ we need to solve the following optimization problem:
 
