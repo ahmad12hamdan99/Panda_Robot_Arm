@@ -137,7 +137,49 @@ $$\mathbf{\pi}_0=[ 0 \quad 0 \quad 0 \quad 0 \quad 0 \quad d_1 \quad 0 \quad 0
 
 
 ## Jacobians
+There are different ways to compute the identification Jacobian matrix $J_\pi$  , either analytically or numerically.
 
+The general transformation matrix of the manipulator geometric model based on semi-analytical differentiation is presented in the following form:
+
+$T = T_{base} . [T_1  (q, π) .  H ( π_k) . T_2 ( q, π)]_{robot} . T_{tool}$ 
+where :
+  * $T_1  (q, π)$ and $T_2 ( q, π)$ : are the transformation matrices on the left and right sides of the currently considered parameter $\pi_k$
+  * $H  (π_k)$ refers to the elementary homogeneous transformation (which is either a translation or a rotation) related to the parameter $π_k$.
+
+  * $T_{base}$ and $T_{tool}$ are the transformation matrices of the robot and the tool respectively.
+
+The partial derivatives of T with respect to the parameter $π_k$ can be computed
+using the matrix product as follows:
+
+$\dot T_k = T_{base} . [T_1  (q, π) . \dot H ( π_k) . T_2 ( q, π)]_{robot} . T_{tool}$   where:
+  * $\dot H ( π_k)$ is the differential transformation matrix, which can be easily obtained analytically.It should be mentioned that these derivatives are computed in the neighborhood of the nominal values $π_0$
+
+
+since any homogeneous matrix $T$ can be represented as $T [  R, p; 0, 1]$ , where $R$ is
+the corresponding rotation matrix of size $[3 * 3]$ , and $p$ is the $[3 *1]$ translation vector, the desired columns of the identification Jacobian $J_\pi$ can be extracted from the matrix $\dot T_k$ in the following way:
+  * The position part of the Jacobian column is simply the vector $p$, so:
+
+    $[J_\pi]_{1,k} = [\dot T_k]_{1,4}$ , $[J_\pi]_{2,k} = [\dot T_k]_{2,4}$ , $[J_\pi]_{3,k} = [\dot T_k]_{3,4}$ 
+
+  * The orientation part can be computed in a similar way but current orientation of the manipulator end-effector must be taken into account: 
+
+    $[J_\pi]_{4,k} = [\dot T_k . T^{-1} ]_{3,2}$ , $[J_\pi]_{5,k} = [\dot T_k  T^{-1} ]_{1,3}$ , $[J_\pi]_{6,k} = [\dot T_k . T^{-1}]_{2,1}$ 
+
+
+**Matrix derivatives for geometric model of the  robot**
+
+| Parameters      |  Matrix derivative     |
+|----------       |---------               |
+| $\Delta q_2$    |   $T_{1}^{'}=T_{base}.[R_z(q_1).H_{Ry}^{'}.R_y(q_2).T_z(d1).R_z(q_3).T_x(d2).R_y(q_4).T_x(d3).T_z(d4).R_z(q_5).R_y(q_6).T_x(d5).R_z(q_7)]$|
+| $p_{z1}$    |$T_{2}^{'}=T_{base}.[R_z(q_1).R_y(q_2).H_{Tz}^{'}.R_z(q_3).T_x(d2).R_y(q_4).T_x(d3).T_z(d4).R_z(q_5).R_y(q_6).T_x(d5).R_z(q_7)]$|
+|$\Delta q_3$   |$T_{3}^{'}=T_{base}.[R_z(q_1).R_y(q_2).T_z(d1).H_{Rz}^{'}.R_z(q_3).T_x(d2).R_y(q_4).T_x(d3).T_z(d4).R_z(q_5).R_y(q_6).T_x(d5).R_z(q_7)]$|
+|$p_{x2}$|$T_{4}^{'}=T_{base}.[R_z(q_1).R_y(q_2).T_z(d1).R_z(q_3).H_{Tx}^{'}.R_y(q_4).T_x(d3).T_z(d4).R_z(q_5).R_y(q_6).T_x(d5).R_z(q_7)]$|
+|$\Delta q_4$| $T_{5}^{'}=T_{base}.[R_z(q_1).R_y(q_2).T_z(d1).R_z(q_3).T_x(d2).H_{Ry}^{'}.R_y(q_4).T_x(d3).T_z(d4).R_z(q_5).R_y(q_6).T_x(d5).R_z(q_7)]$|
+|$p_{x3}$| $T_{6}^{'}=T_{base}.[R_z(q_1).R_y(q_2).T_z(d1).R_z(q_3).T_x(d2).R_y(q_4).H_{Tx}^{'}.T_z(d4).R_z(q_5).R_y(q_6).T_x(d5).R_z(q_7)]$|
+|$p_{z3}$ |$T_{7}^{'}=T_{base}.[R_z(q_1).R_y(q_2).T_z(d1).R_z(q_3).T_x(d2).R_y(q_4).T_x(d3).H_{Tz}^{'}.R_z(q_5).R_y(q_6).T_x(d5).R_z(q_7)]$|
+|$\Delta q_5$| $T_{8}^{'}=T_{base}.[R_z(q_1).R_y(q_2).T_z(d1).R_z(q_3).T_x(d2).R_y(q_4).T_x(d3).T_z(d4).H_{Rz}^{'}.R_z(q_5).R_y(q_6).T_x(d5).R_z(q_7)]$|
+|$\Delta q_6$|$T_{9}^{'}=T_{base}.[R_z(q_1).R_y(q_2).T_z(d1).R_z(q_3).T_x(d2).R_y(q_4).T_x(d3).T_z(d4).R_z(q_5).H_{Ry}^{'}.R_y(q_6).T_x(d5).R_z(q_7)]$|
+|$p_{x5}$|$T_{10}^{'}=T_{base}.[R_z(q_1).R_y(q_2).T_z(d1).R_z(q_3).T_x(d2).R_y(q_4).T_x(d3).T_z(d4).R_z(q_5).R_y(q_6).H_{Tx}^{'}.R_z(q_7)]$|
 
 
 
