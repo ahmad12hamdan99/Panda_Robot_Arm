@@ -79,6 +79,13 @@ homogeneous matrices product.
   * if $e_j \perp e_{j-1}$ , eliminate the term $T_{u,L_{j-1}}$ or $T_{v,L_{j-1}}$  that corresponds to $T_{e,j}$
   * if $e_j \parallel  e_{j-1}$ , eliminate the term $T_{u,L_{j-k}}$ or $T_{v,L_{j-k}}$ that defines the translation in the direction of axis $e_j$ , for which $k$ is minimum $( k \geq 1 )$
 
+<p align="center">
+  <img src="HW1/img/manipulator_seg.png" alt="seg"/>
+</p>
+<p align = "center">
+Fig.2.1 - Manipulator segment with perpendicular and parallel axes
+</p>
+
 
 Applying the previous steps to the 7-DoF Panda robot we got the following:
 1. Complete reducable model: $T=[T_xT_yT_zR_xR_yR_z]_b.$
