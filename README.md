@@ -80,13 +80,29 @@ homogeneous matrices product.
   * if $e_j \parallel  e_{j-1}$ , eliminate the term $T_{u,L_{j-k}}$ or $T_{v,L_{j-k}}$ that defines the translation in the direction of axis $e_j$ , for which $k$ is minimum $( k \geq 1 )$
 
   Appling the previous Steps to our robot we got the following :
-1. $T=[T_xT_yT_zR_xR_yR_z]_b . R_z(q_1+\Delta q_1) . [T_xT_yR_xR_y].R_y(q_2+\Delta q_2) . [T_xT_zR_xR_z].R_z(q_3+\Delta q_3).2. [T_xT_yR_xR_y].R_y(q_4+\Delta q_4) .[T_xT_zR_xR_z] .R_z(q_5+\Delta q_5).[T_xT_yR_xR_y]. R_y(q_6+\Delta q_6). [T_xT_zR_xR_z]. R_z(q_7+\Delta q_7). [T_xT_yR_xR_y] . [T_xT_yT_zR_xR_yR_z]_t$
+1. $T=[T_xT_yT_zR_xR_yR_z]_b.$
+$R_z(q_1+\Delta q_1).[T_xT_yR_xR_y].$
+$R_y(q_2+\Delta q_2).[T_xT_zR_xR_z].$
+$R_z(q_3+\Delta q_3).[T_xT_yR_xR_y].$
+$R_y(q_4+\Delta q_4).[T_xT_zR_xR_z].$
+$R_z(q_5+\Delta q_5).[T_xT_yR_xR_y].$
+$R_y(q_6+\Delta q_6).[T_xT_zR_xR_z].$
+$R_z(q_7+\Delta q_7).[T_xT_yR_xR_y].$
+$[T_xT_yT_zR_xR_yR_z]_t$
 
   * Applying the elimination rules : 
-$T=[T_xT_yT_zR_xR_yR_z]_b.R_z(q_1+\cancel{\Delta q_1}).[T_xT_yR_x\cancel{R_y}].R_y(q_2+\Delta q_2).[T_xT_zR_x\cancel{R_z}].R_z(q_3+\Delta q_3).[T_xT_yR_x\cancel{R_y}].R_y(q_4+\Delta q_4).[T_xT_zR_x\cancel{R_z}].R_z(q_5+\Delta q_5).[T_xT_yR_x \cancel{R_y}].R_y(q_6+\Delta q_6).[T_x\cancel{T_z}R_x\cancel{R_z}].R_z(q_7+\cancel{\Delta q_7}).[\cancel{T_x}\cancel{T_y}\cancel{R_x}\cancel{R_y}].[\cancel{T_x}\cancel{T_y}\cancel{T_z}\cancel{R_x}\cancel{R_y}\cancel{R_z}]_t$
+$T=[T_xT_yT_zR_xR_yR_z]_b.$
+$R_z(q_1+\cancel{\Delta q_1}).[T_xT_yR_x\cancel{R_y}].$
+$R_y(q_2+\Delta q_2).[T_xT_zR_x\cancel{R_z}].$
+$R_z(q_3+\Delta q_3).[T_xT_yR_x\cancel{R_y}].$
+$R_y(q_4+\Delta q_4).[T_xT_zR_x\cancel{R_z}].$
+$R_z(q_5+\Delta q_5).[T_xT_yR_x\cancel{R_y}].$
+$R_y(q_6+\Delta q_6).[T_x\cancel{T_z}R_x\cancel{R_z}].$
+$R_z(q_7+\cancel{\Delta q_7}).[\cancel{T_x}\cancel{T_y}\cancel{R_x}\cancel{R_y}].$
+$[\cancel{T_x}\cancel{T_y}\cancel{T_z}\cancel{R_x}\cancel{R_y}\cancel{R_z}]_t$
 
   * the final equation :
-$T_{robot}=R_z(q_1).[T_xT_yR_x].R_y(q_2+ \Delta q_2).[T_xT_zR_x].R_z(q_3+\Delta q_3).$
-$[T_xT_yR_x].R_y(q_4+\Delta q_4).[T_xT_zR_x].R_z(q_5+\Delta q_5).[T_xT_yR_x].R_y(q_6+\Delta q_6).[T_xR_x].R_z(q_7)$
+$T_{robot}=R_z(q_1).[T_xT_yR_x].R_y(q_2+ \Delta q_2).[T_xT_zR_x].R_z(q_3+\Delta q_3).[T_xT_yR_x].$
+$R_y(q_4+\Delta q_4).[T_xT_zR_x].R_z(q_5+\Delta q_5).[T_xT_yR_x].R_y(q_6+\Delta q_6).[T_xR_x].R_z(q_7)$
 
  
