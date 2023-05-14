@@ -131,6 +131,46 @@ $$\mathbf{\pi}_0=[ 0 \quad 0 \quad 0 \quad 0 \quad 0 \quad d_1 \quad 0 \quad 0
 \quad 0 \quad 0 \quad 0 \quad 0 \quad d_5 \quad 0 
 ]$$
 
+| Parameters            |    $d_0$   |$d_1$      |$d_2$       |$d_3$      |$d_4$      |$d_5$
+|----------             |---------|---     |---      |--      |--      |---
+|Nominal Values (mm)    | 0.333   | 0.316  | 0.0825  |-0.0825 |0.384   |0.088
+
+
+## Jacobians
+
+
+
+
+
+
+
+
+---
+---
+# Path Planning
+For path path planning we use Rapidly-exploring random tree algorithm known as [RRT](https://en.wikipedia.org/wiki/Rapidly-exploring_random_tree), we highly recommend to read the [original paper](http://msl.cs.illinois.edu/~lavalle/papers/Lav98c.pdf) by Steven M. LaValle to gain a solid understanding for the of how is algorithm works.
+
+A rapidly exploring random tree (RRT) is an algorithm designed to efficiently search nonconvex, high-dimensional spaces by randomly building a space-filling tree. The tree is constructed incrementally from samples drawn randomly from the search space and is inherently biased to grow towards large unsearched areas of the problem. RRTs were developed by Steven M. LaValle and James J. Kuffner Jr. They easily handle problems with obstacles and differential constraints (nonholonomic and kinodynamic) and have been widely used in autonomous robotic motion planning and can be used to compute approximate control policies to control high dimensional nonlinear systems with state and action constraints.
+
+## Algorithm
+For a general configuration space C, the algorithm in pseudocode is as follows:
+
+```
+Algorithm BuildRRT
+
+    Input: Initial configuration qinit, number of vertices in RRT K, incremental distance Δq
+    Output: RRT graph G
+
+    G.init(qinit)
+    for k = 1 to K do
+        qrand ← RAND_CONF()
+        qnear ← NEAREST_VERTEX(qrand, G)
+        qnew ← NEW_CONF(qnear, qrand, Δq)
+        G.add_vertex(qnew)
+        G.add_edge(qnear, qnew)
+    return G
+  ```
+
 
 
 
