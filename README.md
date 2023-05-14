@@ -142,7 +142,7 @@ There are different ways to compute the identification Jacobian matrix $J_\pi$  
 The general transformation matrix of the manipulator geometric model based on semi-analytical differentiation is presented in the following form:
 
 
-$T_{base}.[T_1(q,\pi).H(\pi,k).T_2(q,\pi)]_{robot}.T_{tool}$
+$T_{base}.[T_1(q,\pi) .H(\pi,k). T_2(q,\pi)] . T_{tool}$
 
 where :
   * $T_1  (q, π)$ and $T_2 ( q, π)$ : are the transformation matrices on the left and right sides of the currently considered parameter $\pi_k$
@@ -153,7 +153,7 @@ where :
 The partial derivatives of T with respect to the parameter $π_k$ can be computed
 using the matrix product as follows:
 
-$\dot T_k = T_{base} . [T_1  (q, π) . \dot H ( π_k) . T_2 ( q, π)]_{robot} . T_{tool}$   where:
+$\dot T_k = T_{base} . [T_1  (q, π) . \dot H ( π_k) . T_2 ( q, π)] . T_{tool}$  where:
   * $\dot H ( π_k)$ is the differential transformation matrix, which can be easily obtained analytically.It should be mentioned that these derivatives are computed in the neighborhood of the nominal values $π_0$
 
 
@@ -161,12 +161,14 @@ since any homogeneous matrix $T$ can be represented as $T [  R, p; 0, 1]$ , wher
 the corresponding rotation matrix of size $[3 * 3]$ , and $p$ is the $[3 *1]$ translation vector, the desired columns of the identification Jacobian $J_\pi$ can be extracted from the matrix $\dot T_k$ in the following way:
   * The position part of the Jacobian column is simply the vector $p$, so:
 
-    $[J_\pi]_{1,k} = [\dot T_k]_{1,4}$ , $[J_\pi]_{2,k} = [\dot T_k]_{2,4}$ , $[J_\pi]_{3,k} = [\dot T_k]_{3,4}$ 
+![image](https://github.com/ahmad12hamdan99/Panda_Robot_Arm/assets/113966581/e000cbeb-29f9-4c5f-891c-d9fee75918e0)
+
 
   * The orientation part can be computed in a similar way but current orientation of the manipulator end-effector must be taken into account: 
 
-    $[J_\pi]_{4,k} = [\dot T_k . T^{-1} ]_{3,2}$ , $[J_\pi]_{5,k} = [\dot T_k  T^{-1} ]_{1,3}$ , $[J_\pi]_{6,k} = [\dot T_k . T^{-1}]_{2,1}$ 
 
+
+![image](https://github.com/ahmad12hamdan99/Panda_Robot_Arm/assets/113966581/cc8c178e-3e9c-47b7-a7b5-c3e854e94cf6)
 
 **Matrix derivatives for geometric model of the  robot**
 
