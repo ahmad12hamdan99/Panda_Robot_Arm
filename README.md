@@ -188,6 +188,46 @@ the corresponding rotation matrix of size $[3 * 3]$ , and $p$ is the $[3 *1]$ tr
 
 
 
+**Model correction**
+
+for our robot we considered only the following parameters to have deflections:
+  * The links lengths 
+  * The joints positions
+
+$\mathbf{\pi}=\{  \Delta q_2  \quad p_{z2} \quad \Delta q_3  
+\quad p_{x3} \quad \Delta q_4 \quad p_{x4} \quad p_{z4} 
+\quad \Delta q_5 \quad \Delta q_6 \quad p_{x6}\}$
+
+The initial value:
+
+$\mathbf{\pi_{0}}=\{  0  \quad  0.316  \quad 0  
+\quad 0.0825 \quad 0 \quad -0.0825 \quad 0.384
+\quad 0 \quad 0 \quad 0.088 \}$
+
+so we have 10 parameters to calibrate,by using the linearized model $P_i =P_{0i} + J_i. \Delta \pi$ we need to solve the following optimization problem:
+
+$min \quad \sum_{i=1}^{m}((J_{\pi i}-\Delta P_i)^T(J_{\pi i}-\Delta P_i))$
+and the solution would be :
+$\Delta \Pi=(J_{a}^{T}.J_{a})^{-1}.J_{a}^{T}.\Delta P_{a}$ where :
+  * $\Delta P_i=P_i-P_0$
+  * $J_a=[J_1 \quad J_2  \cdots  J_m]$
+  * $\Delta P_{a}=[\Delta P_{1} \quad \Delta P_{2} \cdots  \Delta P_{m}]$  
+
+Testing our soultion: we tested the model to get the errors:
+
+
+
+| Parameter | recovered error       | actual error    |
+|-----------|-----------------------|-----------------|
+| q2        | -0.00986713374649666  | 0.01            |
+| d1        | 0.0031824970212210434 | 0.316           |
+| q3     | -0.010195168119300014 | 0.01            |
+| d2     | 0.0007354404443950024 | 0.0825          |
+| q4     | 0.009942197257039613  |-0.01            |
+| d3     | -0.0007859627934828278|-0.0825          |
+| d4     | 0.0038338831997834608 | 0.384           |
+| q5     | 0.0008054082974624351 | 0               |
+
 
 
 
