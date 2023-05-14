@@ -141,7 +141,7 @@ There are different ways to compute the identification Jacobian matrix $J_\pi$  
 
 The general transformation matrix of the manipulator geometric model based on semi-analytical differentiation is presented in the following form:
 
-$T = T_{base} . [T_1  (q, π) .  H ( π_k) . T_2 ( q, π)]_{robot} . T_{tool}$ 
+$$T = T_{base} . [T_1  (q, π) .  H ( π_k) . T_2 ( q, π)]_{robot} . T_{tool}$$
 where :
   * $T_1  (q, π)$ and $T_2 ( q, π)$ : are the transformation matrices on the left and right sides of the currently considered parameter $\pi_k$
   * $H  (π_k)$ refers to the elementary homogeneous transformation (which is either a translation or a rotation) related to the parameter $π_k$.
