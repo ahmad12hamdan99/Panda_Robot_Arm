@@ -45,5 +45,54 @@ the geometric parameters embedded in the robot controller.
 
 
 
+## Complete, irreducible geometric model
+In this step we assum that the manipulator links are rigid enough and the non-geometric factors are negligible in this level of calibration, the general expression of the geometric model for a $n$ -dof serial manipulator can be described as a sequence of homogeneous transformations
+
+$T(q) = T_{base}(  \pi_b) [ T_{joint}(q_1,   \pi_{q1}) . T_{link}(  \pi_{L1}) ] ... [ T_{joint}(q_n,   \pi_{qn}) . T_{link}(  \pi_{Ln}) ] T_{tool}(  \pi_t)$
+
+
+
+
+
+where $T$ with different indices denote the relevant matrices of size $4 \times 4$ , $q$ is the vector of the actuated joint coordinates, while the vectors $π_b , π_t , π_{Lj}$ and the scalars $π_qj$ are the manipulator
+geometric parameters corresponding to the base, tool, links and joints, respectively.
+
+There are a number of techniques that allows us to obtain the manipulator model of such type, which is definitely complete but includes redundant parameters to be eliminated. 
+In this work, we will use the model generation technique that is
+based on dedicated analytical elimination rules and includes the following steps:
+
+ 1. Construction of the complete and obviously reducible model in the form of
+homogeneous matrices product.
+* The base transformation  $T_{Base}=[T_x T_y T_z R_x R_y R_z]_b$
+* The joint and link transformation $T_{joint,j} $.$ T_{Link,j}$
+  * for revolute joint $T_{joint,j} $.$ T_{Link,j}= R_{e,j}(q_j,\pi_{qj}).[T_u T_v R_u R_v]_{Lj} $
+  * for prismatic joint $T_{joint,j} $.$ T_{Link,j}= T_{e,j}(q_j,\pi_{qj}).[R_u R_v ]_{Lj}$
+* The tool transformation $ T_{tool}=[T_x T_y T_z R_x R_y R_z]_t$
+
+2. Elimination of non-identifiable and semi-identifiable parameters in accordance with specific rules for different nature and structure of consecutive joints.
+* For the case of consecutive revolute joint $R_{e,j}(q_j,\pi_{qj})$
+  * if $ e_j \perp e_{j-1}$ , eliminate the term $R_{u,L_{j-1}} $ or $  R_{v,L_{j-1}} $ that corresponds to $ R_{e,j} $
+  * if $ e_j \parallel  e_{j-1} $ , eliminate the term $ T_{u,L_{j-k}} $ or $  T_{v,L_{j-k}} $ that defines the translation orthogonal to the joint axes, for which $k$ is minimum $( k \geq 1 ).$
+
+
+* For the case of consecutive prismatic joint $T_{e,j}(q_j,\pi_{qj})$
+  * if $ e_j \perp e_{j-1}$ , eliminate the term $T_{u,L_{j-1}} $ or $  T_{v,L_{j-1}} $  that corresponds to $ T_{e,j} $
+  * if $ e_j \parallel  e_{j-1} $ , eliminate the term $ T_{u,L_{j-k}} $ or $  T_{v,L_{j-k}} $ that defines the translation in the direction of axis $e_j$ , for which $ k $ is minimum $( k \geq 1 ).$
+
+  Appling the previous Steps to our robot we got the following :
+  1. $T=[T_xT_yT_zR_xR_yR_z]_b.R_z(q_1+{\Delta q_1}).[T_xT_yR_x{R_y}]_{L_1}.R_y   (q_2+\Delta q_2).[T_x{T_z}R_xR_z]_{L_2}.
+  R_y(q_3+\Delta q_3).[T_xT_zR_x{R_z}]_{L_3}.R_z(q_4+\Delta q_4).[T_xT_yR_x{R_y}]_{L_4}.R_y(q_5+{\Delta q_5}).[T_x{T_z}R_x{R_z}]_{L_5}.
+  R_z(q_6+{\Delta q_6}).[{T_x}{T_y}{R_x}{R_y}]_{L_6}.[T_xT_yT_z{R_x}{R_y}{R_z}]_t$
+
+  * Applying the elimination rules : 
+  <br>
+    $T=[T_xT_yT_zR_xR_yR_z]_b.R_z(q_1+\cancel{\Delta q_1}).[T_xT_yR_x\cancel{R_y}]_{L_1}.R_y(q_2+\Delta q_2).[T_x\cancel{T_z}R_xR_z]_{L_2}.
+    R_y(q_3+\Delta q_3).[T_xT_zR_x\cancel{R_z}]_{L_3}.R_z(q_4+\Delta q_4).[T_xT_yR_x\cancel{R_y}]_{L_4}.R_y(q_5+\cancel{\Delta q_5}).[T_x\cancel{T_z}R_x\cancel{R_z}]_{L_5}.
+    R_z(q_6+\cancel{\Delta q_6}).[\cancel{T_x}\cancel{T_y}\cancel{R_x}\cancel{R_y}]_{L_6}.[T_xT_yT_z\cancel{R_x}\cancel{R_y}\cancel{R_z}]_t$
+  * the final equation :
+  <br>
+    $T_{robot}=R_z(q_1).[T_xT_yR_x]_{L_1}.R_y(q_2+\Delta q_2).[T_xR_xR_z]_{L_2}.R_y(q_3+\Delta q_3).[T_xT_zR_x]_{L_3}.
+    R_z(q_4+\Delta q_4).[T_xT_yR_x]_{L_4}.R_y(q_5).[T_xR_x]_{L_5}.R_z(q_6)$
+
 
 
