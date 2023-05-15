@@ -260,6 +260,19 @@ Fig.5.1 - Example for path planning with multiple obstacles
 Fig.5.2 - Example for path planning with multiple obstacles 
 </p>
 
+We do some postprocessing to the path like smoothing using [Bézier curve](https://www.stkent.com/2015/07/03/building-smooth-paths-using-bezier-curves.html) and path [shortening](https://www.osrobotics.org/osr/planning/post_processing.html). 
+
+The paths found by the planning methods of Section Path planning are collision-free but might not be optimal in terms of path length. Some planning methods allow finding optimal paths, such as PRM* or RRT*, but they tend to be much slower and more difficult to implement compared to their non-optimal counterparts PRM and RRT. An efficient and widely-used approach consists in post-processing the paths found by PRM and RRT to improve the path quality. The algorithm below shows how to post-process a path by repeatedly applying shortcuts.
+```
+'Algorithm: PATH_SHORTCUTTING
+'Input: A collision-free path q
+'Effect: Decrease the path length of q
+FOR rep = 1 TO maxrep
+  Pick two random points t1, t2 along the path     
+  IF the straight segment [q(t1),q(t2)] is collision-free THEN
+    Replace original portion by the straight segment
+```
+
 ## Testing RRT using our robot 
     * Add an obstcale with position (x=0.5, y= 0.0,z= 0.5) and radius of r=0.05 (m)
     * defive start point (x=0.45  , y= 0.25  , z= 0.5)  and goal (x=0.45,y=-0.25 ,z=0.50 )
