@@ -260,18 +260,37 @@ Fig.5.1 - Example for path planning with multiple obstacles
 Fig.5.2 - Example for path planning with multiple obstacles 
 </p>
 
+## Testing RRT using our robot 
+    * Add an obstcale with position (x=0.5, y= 0.0,z= 0.5) and radius of r=0.05 (m)
+    * defive start point (x=0.45  , y= 0.25  , z= 0.5)  and goal (x=0.45,y=-0.25 ,z=0.50 )
+    * generate the path
+   ![path_obst](https://github.com/ahmad12hamdan99/Panda_Robot_Arm/assets/113966581/fdb7cbcc-48fa-4184-ab6a-7458d0c0876f)
+    
+    
+---
+---
+
+## FeedForward controller 
+we implemented a feedforward controller
+![Screenshot from 2023-05-15 12-02-29](https://github.com/ahmad12hamdan99/Panda_Robot_Arm/assets/113966581/1f50903a-3685-48d4-b16b-f89e1504e4cf)
+## Testing controller using our robot 
 
 
+    * take the numerical dervitave of (q1-q7) (from the generated) considering dt=0.01
+    * take the numerical dervitave of (dq1-dq7) considering dt=0.01
 
 
+   
+   ![q_dq3](https://github.com/ahmad12hamdan99/Panda_Robot_Arm/assets/113966581/d1eb7786-9ff6-483c-a2d2-24468352dd57)
+   ![q_dq7](https://github.com/ahmad12hamdan99/Panda_Robot_Arm/assets/113966581/1a7c740a-e655-4bfb-9497-16f8de702e7e)
+   ![dq_ddq3](https://github.com/ahmad12hamdan99/Panda_Robot_Arm/assets/113966581/5d363df6-a3e5-4151-91e2-b55e64679f00)
+   ![dq_ddq7](https://github.com/ahmad12hamdan99/Panda_Robot_Arm/assets/113966581/e9b8351a-4377-4986-8091-3da6052fe3a1)
 
+   
 
+    * now we have (q , dq ,ddq ) the input of our controller (feedforward controller)
 
-
-
-
-
-
+![Figure 2](https://github.com/ahmad12hamdan99/Panda_Robot_Arm/assets/113966581/781bba76-618a-4051-b7a9-ead988db9756)
 
 
  
