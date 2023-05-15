@@ -208,12 +208,12 @@ Testing our soultion: we tested the model to get the errors:
 | Parameter | recovered error       | actual error    |
 |-----------|-----------------------|-----------------|
 | q2        | -0.00986713374649666  | 0.01            |
-| d1        | 0.0031824970212210434 | 0.316           |
+| d1        | 0.0031824970212210434 | 0.00316           |
 | q3     | -0.010195168119300014 | 0.01            |
-| d2     | 0.0007354404443950024 | 0.0825          |
+| d2     | 0.0007354404443950024 | 0.000825          |
 | q4     | 0.009942197257039613  |-0.01            |
-| d3     | -0.0007859627934828278|-0.0825          |
-| d4     | 0.0038338831997834608 | 0.384           |
+| d3     | -0.0007859627934828278|-0.000825          |
+| d4     | 0.0038338831997834608 | 0.00384           |
 | q5     | 0.0008054082974624351 | 0               |
 
 
@@ -284,7 +284,9 @@ FOR rep = 1 TO maxrep
 ---
 
 ## FeedForward controller 
-we implemented a feedforward controller
+we implemented a feedforward controller![Screenshot from 2023-05-15 13-35-23](https://github.com/ahmad12hamdan99/Panda_Robot_Arm/assets/113966581/37b313c6-b5de-4f89-bde3-10d22bba752c)
+
+
 ![Screenshot from 2023-05-15 12-02-29](https://github.com/ahmad12hamdan99/Panda_Robot_Arm/assets/113966581/1f50903a-3685-48d4-b16b-f89e1504e4cf)
 ## Testing controller using our robot 
 
