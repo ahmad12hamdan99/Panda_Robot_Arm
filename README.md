@@ -11,6 +11,7 @@ We hope that it will be helpful for students and engineers to get a better under
 # Geometric Calibration
 
 ## Theoritical Background
+This work is based on [Optimal Pose Selection for the Identification of Geometric and Elastostatic Parameters of Machining Robots](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwiKwrmTk_f-AhUhiIsKHRuNC6IQFnoECA8QAQ&url=https%3A%2F%2Ftheses.hal.science%2Ftel-00983277%2Fdocument&usg=AOvVaw1IosyGhPhODSgPlq4wYpzE)
 
 From a manifacturing stand point it is extremely challenging to produce robots with zero erros in joints lenghts. Therefore each produced manipulator has small errors from the factory. Keep in mind all these small errors will affect the accuracy if not considered. It has been reported by a number of authors, the manipulator geometric errors are responsible for about 90% of the total positioning errors.
 
