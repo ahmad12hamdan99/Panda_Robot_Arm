@@ -292,5 +292,6 @@ we implemented a feedforward controller
 
 ![Figure 2](https://github.com/ahmad12hamdan99/Panda_Robot_Arm/assets/113966581/781bba76-618a-4051-b7a9-ead988db9756)
 
+$${\color{red}q} \quad {\color{blue}q_{des}} \quad {\color{green}d_q} \quad {\color{grey}dq_{des}}$$
 
  
